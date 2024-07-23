@@ -1,13 +1,13 @@
 # Dynamic Quiz
 
 ## Mentors
-1. <span style="text-decoration:underline; color:blue;">[Mr.Bhargavesh](#Mr.Bhargavesh Dakka )</span>
+1. <span style="text-decoration:underline; color:blue;">[Mr.Bhargavesh Dakka](#Mr.Bhargavesh )</span>
   
 
 ## Team Members
 <html>
 <p>1.Mr.S Gopi Krishna Thribhuvanesh BBA-IT pursuing 3rd year - Team Leader</p>
-<p>2.Ms.E INDU &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    B.Tech    4th year pursuing - Team member</p>
+<p>2.Ms.E INDU &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    B.Tech    4th year pursuing - Team member</p>
 </html>
 
 ## Period of the Project 
