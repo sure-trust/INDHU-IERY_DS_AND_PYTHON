@@ -6,8 +6,10 @@
 
 ## Team Members
 <html>
-<p>1.Mr.Gopi Krishna  B.Tech    4th year pursuing - Team Leader</p>
-<p>2.Ms.INDU          B.Tech    4th year pursuing - Team member</p>
+<ul>
+<li>1.Mr.Gopi Krishna  B.Tech    4th year pursuing - Team Leader</li>
+<li>2.Ms.INDU          B.Tech    4th year pursuing - Team member</li>
+</ul>
 </html>
 
 ## Period of the Project
