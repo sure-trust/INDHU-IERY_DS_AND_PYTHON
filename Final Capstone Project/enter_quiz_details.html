@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Quiz Details</title>
+</head>
+<body>
+    <h1>Enter Quiz Details</h1>
+    <form action="{{ url_for('enter_quiz_details') }}" method="post">
+        <label for="quiz_name">Quiz Name:</label><br>
+        <input type="text" id="quiz_name" name="quiz_name" required><br><br>
+        <label for="timer">Timer (in minutes):</label><br>
+        <input type="number" id="timer" name="timer" min="1" required><br><br>
+        <label for="questions">Questions:</label><br>
+        <input type="text" name="questions[]" required><br>
+        <button type="button" id="addQuestion">Add Question</button><br><br>
+        <div id="optionsContainer"></div><br>
+        <button type="submit">Create Quiz</button>
+    </form>
+
+    <script>
+        document.getElementById('addQuestion').addEventListener('click', function() {
+            var questionInput = document.createElement('input');
+            questionInput.type = 'text';
+            questionInput.name = 'questions[]';
+            questionInput.required = true;
+            questionInput.placeholder = 'Enter question';
+            document.getElementById('optionsContainer').appendChild(questionInput);
+            document.getElementById('optionsContainer').appendChild(document.createElement('br'));
+
+            var optionsInput = document.createElement('input');
+            optionsInput.type = 'text';
+            optionsInput.name = 'options[][]';
+            optionsInput.required = true;
+            optionsInput.placeholder = 'Enter option';
+            document.getElementById('optionsContainer').appendChild(optionsInput);
+            document.getElementById('optionsContainer').appendChild(document.createElement('br'));
+        });
+    </script>
+</body>
+</html>
+

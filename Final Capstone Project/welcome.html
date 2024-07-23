@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: url("/static/5.jpg") no-repeat center center fixed;
+            background-size: cover;
+            color: aliceblue;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial,'Times New Roman', Times, serif;
+        }
+
+        h3 {
+            text-align: left;
+        }
+
+        p {
+            color: aquamarine;
+            font-size: large;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .heading1 {
+            margin-top: 10vh;
+        }
+
+        .about-sec {
+            margin-top: 0px;
+        }
+
+        h2, h1 {
+            text-align: left;
+            color: whitesmoke;
+        }
+
+        .navbar-custom {
+            background-color: navy !important; /* Navy blue color for the navbar */
+        }
+
+        .navbar-custom .nav-link {
+            color: aliceblue !important; /* Light blue color for the nav items */
+        }
+
+        .navbar-custom .navbar-toggler {
+            border-color: transparent !important; /* Remove default border */
+        }
+
+        .navbar-custom .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%288255,255,255,1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important; /* White color for the icon */
+        }
+
+        .content {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top navbar -->
+    <div class="b1">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-custom" id="nav">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/signup">Sign up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/quizz_contact">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Home content -->
+        <section class="home">
+            <div class="content heading1">
+                <h1>SURE Trust Quiz <br><span>Test Your Knowledge</span></h1>
+            </div>
+        </section>
+        <img src="/static/bg.webp" alt="">
+        <div class="container about-sec">
+            <hr>
+            <h3>ABOUT</h3>
+            <p>Level up your coding skills with SURE Trust's free online Quizz! Challenge yourself and others on various coding concepts, track your progress, and have fun learning in a competitive environment. Quizz makes learning to code engaging and interactive, perfect for beginners and experienced coders alike.</p>
+            <hr>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRmAk5d0y5t8e7q2ur5AL5t3YpGsFkaXrp1Y6/odn" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXlUc0C1gZLWz59uZ4+VnXQ4tLQk5Fx6XDcFFkYGjH29fX/0G6w1L2C5wB6J" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhG9tD5CLt5SyiemRsnRn0JO4ei5kH7mJJLv8+1C6yy5oB/hR0a3I8p5XjF2" crossorigin="anonymous"></script>
+</body>
+</html>
+

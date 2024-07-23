@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .button-container button {
+            padding: 15px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .button-container #createQuizBtn {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .button-container #joinQuizBtn {
+            background-color: #2ecc71;
+            color: #fff;
+        }
+        
+    </style>
+</head>
+<body>
+<img src ="/static/1630642388246.jpeg" class="img-fluid" alt="...">
+<div class="button-container">
+    <button id="createQuizBtn">Create a Quiz</button>
+    <button id="joinQuizBtn">Join a Quiz</button>
+    <div class="background">
+</div>
+
+<script>
+    document.getElementById("createQuizBtn").addEventListener("click", function() {
+        window.location.href = "/create_quiz";
+    });
+
+    document.getElementById("joinQuizBtn").addEventListener("click", function() {
+        window.location.href = "/join_quiz";
+    });
+</script>
+</body>
+</html>
+

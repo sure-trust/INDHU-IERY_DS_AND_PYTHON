@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("/static/8.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        form {
+            width: 300px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .signup-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+    <!-- Firebase setup -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"></script>
+    <script>
+        // Your Firebase configuration
+       <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("/static/8.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        form {
+            width: 300px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .signup-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+    <!-- Firebase setup -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"></script>
+    <script>
+        // Your Firebase configuration
+        var firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        function verifyOTP() {
+            var otp = document.getElementById('otp').value;
+            window.confirmationResult.confirm(otp).then(function (result) {
+                window.location.href = '/enter';
+            }).catch(function (error) {
+                console.error(error);
+                alert('Error verifying OTP: ' + error.message);
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Verify OTP</h1>
+    <form onsubmit="verifyOTP(); return false;">
+        <label for="otp">Enter OTP:</label>
+        <input type="text" id="otp" name="otp" required><br><br>
+        <button type="submit">Verify OTP</button>
+    </form>
+</body>
+</html>
+
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        function verifyOTP() {
+            var otp = document.getElementById('otp').value;
+            window.confirmationResult.confirm(otp).then(function (result) {
+                window.location.href = '/enter';
+            }).catch(function (error) {
+                console.error(error);
+                alert('Error verifying OTP: ' + error.message);
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Verify OTP</h1>
+    <form onsubmit="verifyOTP(); return false;">
+        <label for="otp">Enter OTP:</label>
+        <input type="text" id="otp" name="otp" required><br><br>
+        <button type="submit">Verify OTP</button>
+    </form>
+</body>
+</html>
+

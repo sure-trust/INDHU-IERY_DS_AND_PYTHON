@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Results</title>
+    <style>
+        body {
+            font-family: Arial,'Times New Roman', Times, serif;
+            text-align: center;
+            background-color:aliceblue;
+        padding: 20px;
+
+        }
+        .container {
+            margin-top: 100px;
+
+        }
+
+
+        .tick {
+            font-size: 80px;
+            color: green;
+        }
+        .message {
+            font-size: 24px;
+            margin-top: 20px;
+
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="/static/bg.webp" alt="bg" width="170" height="170">
+        <div class="container-1">
+            <div class="tick">&#10004;</div>	
+        <p class="message">Your quiz has been submitted. </p>
+       <h1>Quiz Results</h1>
+    	<p>Total Questions: {{ total_questions }}</p>
+    	<p>Correct Answers: {{ correct_answers }}</p>
+        <p>Incorrect Answers: {{ incorrect_answers }}</p>
+
+    </div>
+</body>
+</html>
+

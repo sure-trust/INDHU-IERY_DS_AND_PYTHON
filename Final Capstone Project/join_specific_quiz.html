@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ quiz_name }}</title>
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: url("/static/im.jpeg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: #333;
+        }
+
+        .warning {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ff0000;
+            font-size: 16px;
+        }
+
+        .timer {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #ff0000;
+        }
+
+        .quiz-info {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .question-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .question {
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .options {
+            margin-left: 20px;
+        }
+
+        .option {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            font-size: 16px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .disqualified {
+            text-align: center;
+            margin-top: 50px;
+            font-weight: bold;
+            color: #ff0000;
+            font-size: 24px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .quiz-header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+            margin-bottom: 20px;
+        }
+
+        .quiz-header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var duration = {{ duration }} * 60; // Duration in seconds
+            var timerDisplay = document.getElementById('timerDisplay');
+            var disqualified = false;
+            var intervalId;
+            var tabSwitchCount = 0;
+
+            // Start timer function
+            function startTimer(duration, display) {
+                var timer = duration, minutes, seconds;
+                intervalId = setInterval(function () {
+                    if (disqualified) {
+                        clearInterval(intervalId);
+                        return;
+                    }
+
+                    minutes = parseInt(timer / 60, 10);
+                    seconds = parseInt(timer % 60, 10);
+
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                    display.textContent = minutes + ":" + seconds;
+
+                    if (--timer < 0) {
+                        timer = 0;
+                        $('#submit_quiz').click();
+                    }
+                }, 1000);
+            }
+
+            // Disqualify user function
+            function disqualifyUser(reason) {
+                disqualified = true;
+                clearInterval(intervalId);
+                $('#disqualifiedMessage').text(reason).show();
+                $('#quizForm').hide();
+            }
+
+            // Track visibility changes and tab switches
+            document.addEventListener('visibilitychange', function() {
+                if (document.visibilityState === 'hidden') {
+                    tabSwitchCount++;
+                    if (tabSwitchCount > 2) {
+                        disqualifyUser('Disqualified for switching tabs or minimizing the window.');
+                    }
+                }
+            });
+
+            // Start timer on page load
+            window.addEventListener('load', function() {
+                startTimer(duration, timerDisplay);
+            });
+
+            // Handle form submission
+            $('#submit_quiz').on('click', function(event) {
+                event.preventDefault();
+
+                var quiz_id = '{{ quiz_id }}';
+                var username = '{{ session["username"] }}';
+                var total_questions = {{ quiz_details|length }};
+                var correct_answers = 0;
+                var incorrect_answers = 0;
+                var user_answers = {};
+
+                $('.question-container').each(function() {
+                    var question_id = $(this).data('question-id');
+                    var selected_option = $('input[name="question_' + question_id + '"]:checked').val();
+
+                    user_answers[question_id] = selected_option;
+
+                    var correct_option = $(this).data('correct-option');
+                    if (selected_option === correct_option) {
+                        correct_answers++;
+                    } else {
+                        incorrect_answers++;
+                    }
+                });
+
+                var data = {
+                    quiz_id: quiz_id,
+                    username: username,
+                    total_questions: total_questions,
+                    correct_answers: correct_answers,
+                    incorrect_answers: incorrect_answers,
+                    user_answers: user_answers
+                };
+
+                console.log('Sending data:', data); // Log the data being sent
+
+                // Store the user score in Firebase
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ url_for("submit_quiz") }}',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function(response) {
+                        window.location.href = '{{ url_for("score") }}';
+                    },
+                    error: function(error) {
+                        alert('Error occurred: ' + error.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="warning" id="warning">
+        <p>Warning: Do not switch tabs or leave the page during the quiz. Doing so will disqualify you.</p>
+    </div>
+
+    <div class="timer">Time Remaining: <span id="timerDisplay"></span></div>
+
+    <h1>{{ quiz_name }}</h1>
+    <p class="quiz-info">Duration: {{ duration }} minutes</p>
+
+   <div class="container">
+        <form method="POST">
+            {% for question in quiz_details %}
+            <div class="question-container">
+                <p class="question">{{ question.question }}</p>
+                {% if question.image_url %}
+                    <img src="{{ question.image_url }}" alt="Question Image">
+                {% endif %}
+                {% for option in options[question.question_id] %}
+                <div class="option">
+                    <input type="radio" id="{{ option.id }}" name="{{ question.question_id }}" value="{{ option.id }}">
+                    <label for="{{ option.id }}">{{ option.text }}</label>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="disqualified" id="disqualifiedMessage" style="display: none;">
+        <p>You have been disqualified for switching tabs or leaving the page multiple times.</p>
+    </div>
+</body>
+</html>

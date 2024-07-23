@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Student Details</title>
+</head>
+<body>
+    <h1>Enter Student Details</h1>
+    <form action="{{ url_for('submit_student_details') }}" method="post">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="mobile">Mobile:</label><br>
+        <input type="text" id="mobile" name="mobile" required><br><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+        <button type="submit">Submit Details</button>
+    </form>
+</body>
+</html>
+

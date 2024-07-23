@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Quiz</title>
+    <style>
+        /* Your existing styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: url("/static/images.jpeg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button[type="button"],
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+            margin-top: 10px;
+        }
+        button[type="button"]:hover,
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .question-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            position: relative;
+        }
+        .options {
+            margin-left: 20px;
+            padding-left: 20px;
+            border-left: 1px solid #ccc;
+        }
+        .correct {
+            font-weight: bold;
+            color: green;
+        }
+        .remove-question {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .options input[type="text"] {
+            margin-bottom: 10px;
+        }
+        .timer {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #ff0000;
+        }
+        .file-name {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Create Quiz</h1>
+        <form id="quizForm" action="/create_quiz" method="post" enctype="multipart/form-data">
+            <label for="quiz_name">Quiz Name:</label>
+            <input type="text" id="quiz_name" name="quiz_name"><br><br>
+            <label for="timer">Timer (in minutes):</label><br>
+            <input type="number" id="timer" name="timer" min="1" required><br><br>
+            
+            <div id="questions">
+                <div class="question-container">
+                    <label for="question_1">Question 1:</label><br>
+                    <input type="text" id="question_1" name="questions[]" required><br>
+                    
+                    <label for="options_1">Options:</label><br>
+                    <input type="text" id="option_1_1" name="options[0][]" required><br>
+                    <input type="text" id="option_1_2" name="options[0][]" required><br>
+                    <input type="text" id="option_1_3" name="options[0][]" required><br>
+                    <input type="text" id="option_1_4" name="options[0][]" required><br>
+                    
+                    <label for="correct_option_1">Correct Option:</label><br>
+                    <select id="correct_option_1" name="correct_options[0]" required>
+                        <option value="0">Option 1</option>
+                        <option value="1">Option 2</option>
+                        <option value="2">Option 3</option>
+                        <option value="3">Option 4</option>
+                    </select><br><br>
+                    
+                    <label for="image_1">Upload Image:</label><br>
+                    <input type="file" id="image_1" name="images[]" onchange="displayFileName(this, 'file_name_1')"><br>
+                    <span id="file_name_1" class="file-name">No file selected</span><br><br>
+
+                    <button type="button" class="remove-question" onclick="removeQuestion(this)">Remove Question</button>
+                </div>
+            </div>
+            
+            <button type="button" onclick="addQuestion()">Add Question</button><br><br>
+            
+            <input type="submit" value="Save Quiz">
+        </form>
+
+        <script>
+            var questionCounter = 1;  // Initialize question counter
+            
+            function addQuestion() {
+                questionCounter++;
+                const div = document.createElement('div');
+                div.className = "question-container";
+                div.innerHTML = `
+                    <label for="question_${questionCounter}">Question ${questionCounter}:</label><br>
+                    <input type="text" id="question_${questionCounter}" name="questions[]" required><br>
+                    
+                    <label for="options_${questionCounter}">Options:</label><br>
+                    <input type="text" id="option_${questionCounter}_1" name="options[${questionCounter - 1}][]" required><br>
+                    <input type="text" id="option_${questionCounter}_2" name="options[${questionCounter - 1}][]" required><br>
+                    <input type="text" id="option_${questionCounter}_3" name="options[${questionCounter - 1}][]" required><br>
+                    <input type="text" id="option_${questionCounter}_4" name="options[${questionCounter - 1}][]" required><br>
+                    
+                    <label for="correct_option_${questionCounter}">Correct Option:</label><br>
+                    <select id="correct_option_${questionCounter}" name="correct_options[${questionCounter - 1}]" required>
+                        <option value="0">Option 1</option>
+                        <option value="1">Option 2</option>
+                        <option value="2">Option 3</option>
+                        <option value="3">Option 4</option>
+                    </select><br><br>
+
+                    <label for="image_${questionCounter}">Upload Image:</label><br>
+                    <input type="file" id="image_${questionCounter}" name="images[]" onchange="displayFileName(this, 'file_name_${questionCounter}')"><br>
+                    <span id="file_name_${questionCounter}" class="file-name">No file selected</span><br><br>
+
+                    <button type="button" class="remove-question" onclick="removeQuestion(this)">Remove Question</button>
+                `;
+                document.getElementById('questions').appendChild(div);
+            }
+
+            function removeQuestion(button) {
+                const questionDiv = button.parentElement;
+                questionDiv.remove();
+                questionCounter--;
+                updateQuestionLabels();
+            }
+
+            function displayFileName(input, spanId) {
+                const fileName = input.files[0]?.name || 'No file selected';
+                document.getElementById(spanId).textContent = fileName;
+            }
+
+            function updateQuestionLabels() {
+                const questionContainers = document.querySelectorAll('.question-container');
+                questionContainers.forEach((container, index) => {
+                    container.querySelector('label').innerText = `Question ${index + 1}:`;
+                    container.querySelectorAll('input[type="file"]').forEach((input, idx) => {
+                        input.id = `image_${index + 1}_${idx + 1}`;
+                        input.setAttribute('onchange', `displayFileName(this, 'file_name_${index + 1}_${idx + 1}')`);
+                        input.nextElementSibling.id = `file_name_${index + 1}_${idx + 1}`;
+                    });
+                });
+            }
+        </script>
+    </div>
+</body>
+</html>
+

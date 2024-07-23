@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ quiz_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .question-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .options {
+            margin-left: 20px;
+        }
+
+        .option {
+            margin-bottom: 10px;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ quiz_name }}</h1>
+    
+    <form method="post">
+        {% for question in quiz_details %}
+            <div class="question-container">
+                <h3 class="question">{{ question.question }}</h3>
+                <ul class="options">
+                    {% for option in options[question.question_id] %}
+                        <li class="option">{{ option }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+        <button type="submit">Submit Quiz</button>
+    </form>
+</body>
+</html>
+
+

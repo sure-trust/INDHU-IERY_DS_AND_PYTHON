@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ quiz_name }}</title>
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: url("/static/im.jpeg"); /* Replace "/static/image.jpeg" with the path to your image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .warning {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ff0000;
+        }
+
+        .timer {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #ff0000;
+        }
+
+        .quiz-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .question-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .options {
+            margin-left: 20px;
+        }
+
+        .option {
+            margin-bottom: 10px;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .disqualified {
+            text-align: center;
+            margin-top: 50px;
+            font-weight: bold;
+            color: #ff0000;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="warning" id="warning">
+        <p>Warning: Do not switch tabs or leave the page during the quiz. Doing so will disqualify you.</p>
+    </div>
+
+    <div class="timer">Time Remaining: <span id="timerDisplay"></span></div>
+
+    <h1>{{ quiz_name }}</h1>
+    <p class="quiz-info">Duration: {{ duration }} minutes</p>
+
+    <form action="{{ url_for('submit_quiz') }}" method="post" id="quizForm">
+        {% for question in quiz_details %}
+        <div class="question-container">
+            <h3>Question {{ loop.index }}</h3>
+            <p class="question">{{ question.question }}</p>
+            <div class="options">
+                {% for option in options[question.question_id] %}
+                <input type="radio" name="question_{{ question.question_id }}" value="{{ option.text }}"> {{ option.text }}<br>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+        <button type="submit" id="submitButton">Submit Quiz</button>
+    </form>
+
+    <div class="disqualified" id="disqualifiedMessage" style="display: none;">
+        <p>You have been disqualified for switching tabs or leaving the page multiple times.</p>
+    </div>
+
+<script>
+    var duration = {{ duration }} * 60; // Duration in seconds
+    var timerDisplay = document.getElementById('timerDisplay');
+    var initialTimestamp = sessionStorage.getItem('quizStartTimestamp');
+    var disqualified = false; // Track if the user is disqualified
+    var intervalId;
+    var warningShown = false; // Track if the warning has been shown
+
+    if (!initialTimestamp) {
+        initialTimestamp = Date.now();
+        sessionStorage.setItem('quizStartTimestamp', initialTimestamp);
+    } else {
+        initialTimestamp = parseInt(initialTimestamp);
+    }
+
+    var elapsedTime = Math.floor((Date.now() - initialTimestamp) / 1000);
+    var remainingTime = Math.max(duration - elapsedTime, 0);
+
+    function startTimer(duration, display) {
+        var timer = remainingTime, minutes, seconds;
+        intervalId = setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                timer = 0;
+                alert('Time is up!');
+                document.getElementById('quizForm').submit();
+            }
+        }, 1000);
+    }
+
+    startTimer(remainingTime, timerDisplay);
+
+    // Detect tab switch
+    document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'hidden') {
+            if (!warningShown) {
+                warningShown = true;
+                alert('Warning: Switching tabs or leaving the page multiple times will result in disqualification.');
+            } else {
+                if (!disqualified) {
+                    disqualified = true;
+                    clearInterval(intervalId);
+                    window.location.href = '/welcome'; // Redirect to welcome page
+                }
+            }
+        }
+    });
+
+    // Redirect to score page after successful submission
+    document.getElementById('quizForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission behavior
+
+        // Submit the form using AJAX
+        var formData = new FormData(this);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', this.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Redirect to the quiz_completed page after successful form submission
+                window.location.href = '/score';
+            } else {
+                alert('Error occurred while submitting the quiz. Please try again.');
+            }
+        };
+        xhr.send(formData);
+    });
+</script>
+
+</body>
+</html>
+
