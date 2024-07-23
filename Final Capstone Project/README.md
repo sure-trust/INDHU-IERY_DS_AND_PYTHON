@@ -5,7 +5,7 @@
   
 
 ## Team Members
-1.Mr.Gopi Krishna  B.Tech    4th year pursuing - Team Leader
+1.Mr.Gopi Krishna  B.Tech    4th year pursuing - Team Leader/br
 2.Ms.INDU          B.Tech    4th year pursuing - Team member
 
 
