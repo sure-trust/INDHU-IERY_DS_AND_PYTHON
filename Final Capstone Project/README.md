@@ -6,7 +6,7 @@
 
 ## Team Members
 <html>
-<p>1.Mr.Gopi Krishna B.Tech    4th year pursuing - Team Leader</p>
+<p>1..Mr.Gopi Krishna Thribhuvanesh BBA-IT pursuing 3rd year</p>
 <p>2.Ms.INDU &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    B.Tech    4th year pursuing - Team member</p>
 </html>
 
