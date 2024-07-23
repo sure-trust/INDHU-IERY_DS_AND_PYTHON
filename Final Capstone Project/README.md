@@ -5,9 +5,10 @@
   
 
 ## Team Members
-1.Mr.Gopi Krishna  B.Tech    4th year pursuing - Team Leader/br
-2.Ms.INDU          B.Tech    4th year pursuing - Team member
-
+<html>
+<p>1.Mr.Gopi Krishna  B.Tech    4th year pursuing - Team Leader</p>
+<p>2.Ms.INDU          B.Tech    4th year pursuing - Team member</p>
+</html>
 
 ## Period of the Project
 [01/02/2024] - [01/06/2024]
