@@ -1,7 +1,7 @@
 # Dynamic Quiz
 
 ## Mentors
-1. <span style="text-decoration:underline; color:blue;">[Mr.Bhargavesh](#Mr.Bhargavesh )</span>
+1. <span style="text-decoration:underline; color:blue;">[Mr.Bhargavesh Dakka](#Mr.Bhargavesh Dakka )</span>
   
 
 ## Team Members
