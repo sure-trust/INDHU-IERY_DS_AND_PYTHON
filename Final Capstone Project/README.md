@@ -6,13 +6,11 @@
 
 ## Team Members
 <html>
-<ul>
-<li>1.Mr.Gopi Krishna  B.Tech    4th year pursuing - Team Leader</li>
-<li>2.Ms.INDU          B.Tech    4th year pursuing - Team member</li>
-</ul>
+<p>1.Mr.Gopi Krishna &nbsp;&nbsp;&nbsp; B.Tech    4th year pursuing - Team Leader</p>
+<p>2.Ms.INDU &nbsp;&nbsp;&nbsp;&nbsp;   B.Tech    4th year pursuing - Team member</p>
 </html>
 
-## Period of the Project
+## Period of the Project 
 [01/02/2024] - [01/06/2024]
 
 ## Table of Contents
