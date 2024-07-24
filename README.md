@@ -107,8 +107,7 @@ Future work could focus on scaling the application to support a larger user base
 <h1>Conclusion:</h1>
 In conclusion, the dynamic quiz application project successfully demonstrated the potential of interactive and personalized learning tools. The application was well-received by users, who appreciated the real-time feedback and progress tracking features. With further development, the application can become a valuable resource for education and training, promoting continuous learning and self-improvement.
 
-<h1>OUTPUT</h1>
-
+<span style="text-decoration:underline; color:blue;">WEBSITE LINK:https://tinyurl.com/SuretrustQuiz</span>
 
 
 
