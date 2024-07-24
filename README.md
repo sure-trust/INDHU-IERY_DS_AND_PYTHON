@@ -108,8 +108,7 @@ Future work could focus on scaling the application to support a larger user base
 In conclusion, the dynamic quiz application project successfully demonstrated the potential of interactive and personalized learning tools. The application was well-received by users, who appreciated the real-time feedback and progress tracking features. With further development, the application can become a valuable resource for education and training, promoting continuous learning and self-improvement.
 
 <h1>OUTPUT</h1>
-![image](https://github.com/user-attachments/assets/fc3c61e7-e5f9-44c3-b602-b43e1d1f33e2)
-![image](https://github.com/user-attachments/assets/9612a997-27d7-49a7-ba67-9b8ebd868f2a)
+
 
 
 
